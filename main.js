@@ -112,3 +112,142 @@ console.log(!null)      // true
 console.log(!undefined) // true
 console.log(!NaN)       // true
 console.log(!'')        // true
+
+// 논리 (Logical)
+console.log(1 & 0)  // 0
+console.log('A' && 'B' && '')   // ''
+console.log('A' && 'B' && 'C')  // 'C'
+
+console.log(0 || 1) // 0
+console.log(false || 0 || {})   // {}
+console.log(false || 0 || NaN)  // NaN
+
+// Nullish 병합
+const n = 0
+const num1 = n || 8
+console.log(num1)   // 8
+
+// null, undefined 가 아니면 반환
+const num2 = n ?? 8
+console.log(num2)   // 0
+console.log(null ?? 0)  //  0
+console.log(undefined ?? 0) // 0
+console.log(null ?? undefined)  // undefined
+console.log(null ?? 1 ?? 2) // 1
+
+// 전개 연산자(Spread Operator)
+const arr1 = [1, 2, 3]
+console.log(...arr1)   // 1 2 3
+
+const arr2 = [4, 5, 6]
+const arr3 = arr1.concat(arr2)
+console.log(arr3)
+
+const arr4 = [arr1, arr2]
+console.log(arr4)   // [[1, 2, 3], [4, 5, 6]]
+
+const arr5 = [...arr1, ...arr2]
+console.log(arr5)   // [1, 2, 3, 4, 5, 6]
+
+const obj1 = { x : 1, y : 2 }
+const obj2 = { y : 3, z : 4 }
+
+const obj3 = Object.assign({}, obj1, obj2)
+console.log(obj3)   // { x : 1, y: 3, z : 4 }
+
+const obj4 = {...obj1, ...obj2}
+console.log(obj4)   // { x : 1, y: 3, z : 4 }
+
+function fn(x, y, z) {
+    console.log(x, y, z)
+}
+
+fn(...arr1) // 1 2 3
+
+// 구조 분해 할당 (Destructuring assignment)
+const array = [99, 22, 33]
+const [a1, b1, c1] = array
+
+console.log(a1, b1, c1) // 99 22 33
+
+let a2 = 0
+let b2 = 0
+let c2 = 0
+;[a2, b2, c2] = array
+
+console.log(a2, b2, c2) // 99 22 33
+
+let a3 = 0
+let b3 = 0
+let c3 = 0
+;[, b3, c3] = array
+
+console.log(a3, b3, c3) // 0 22 33
+
+const array2 = [1, 2, 3]
+const [a4, ...rest] = array2
+
+console.log(a4, rest)   // 1 [2, 3]
+
+const object = {
+    aa : 1,
+    bb : 2,
+    cc : 3,
+    xx : 7
+}
+
+const {aa, bb} = object
+console.log(aa, bb) // 1 2
+const {cc} = object
+console.log(cc)     // 3
+
+const { xx = 4 } = object
+console.log(xx)     // 7 (object에 xx가 지정되어있지 않다면 4)
+
+const {aa : jay} = object
+console.log(jay)    //  1 (변수명을 변경함)
+
+const {yy : ten = 10} = object
+console.log(ten)
+
+const {aa : aa1, ...rest2} = object
+console.log(rest2)  // {bb: 2, cc: 3, xx: 7}
+
+// 선택적 체이닝 (Optional Chaning)
+const usr = undefined   // null도 마찬가지
+console.log(usr?.name ?? '존재하지 않습니다.')  // undefined >> 존재하지 않습니다.
+console.log(usr?.name || '존재하지 않습니다.')  // 존재하지 않습니다.
+
+// Switch
+function price(fruit) {
+    switch (fruit) {
+        case 'Apple':
+            return 1000
+        case 'Banana':
+            return 1000
+        case 'Cherry':
+            return 1000
+        default:
+            return 0
+    }
+}
+
+console.log(price('Apple'))
+console.log(price('hello'))
+
+// for
+const userObj = {
+    name : 'jay',
+    age : 30,
+    isValid : true,
+    email : 'woalskdl@gmail.com'
+}
+
+for (const key in userObj) {    // 순서 X
+    console.log(key)
+    console.log(userObj[key]);
+}
+
+// Do while
+let nn = 0
+do {console.log(nn)} while (nn) // 일단 한번 실행하고 검사
